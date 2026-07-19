@@ -24,10 +24,13 @@ export default function Error({
         somewhere safer.
       </p>
       <div className={styles.actions}>
-        <button onClick={() => reset()} className="btn">
+        <button onClick={() => reset()} className={`btn ${styles.btnGame}`}>
           Try again
         </button>
-        <Link href="/" className="btn btn-outline">
+        <Link
+          href="/"
+          className={`${styles.btnGame} ${styles.btnGameSecondary}`}
+        >
           Back home
         </Link>
       </div>

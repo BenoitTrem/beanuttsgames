@@ -8,7 +8,7 @@ type Post = {
 
 const posts: Post[] = [
   {
-    date: "July 2026",
+    date: "July 2025",
     title: "Development has begun",
     body: "The Last Wait is officially in production. Follow along here for updates as the project takes shape.",
   },

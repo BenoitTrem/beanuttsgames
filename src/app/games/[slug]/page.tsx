@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { Gamepad2, ExternalLink, AlertTriangle, ArrowLeft } from "lucide-react";
 import styles from "@/app/games/games.module.css";
 import { games, getGame } from "@/lib/games";
 
@@ -36,74 +37,166 @@ export default async function GameDetail({ params }: Props) {
 
   const {
     title,
-    description,
+    descriptionParagraphs,
+    closingLines,
+    controls,
+    contentWarning,
     tags,
     status,
     steamUrl,
+    itchUrl,
     folder,
     screenshotCount,
   } = game;
-  const screenshots = Array.from({ length: screenshotCount }, (_, i) => i + 1);
+
+  const shot = (n: number) =>
+    `/images/games/${folder}/Game_ScreenShot_${n}.png`;
+
+  const editorialShotNumbers = [1, 12, 10];
+
+  const galleryShots = Array.from(
+    { length: screenshotCount },
+    (_, i) => i + 1,
+  ).filter((n) => !editorialShotNumbers.includes(n));
 
   return (
-    <section>
-      <div className="container">
-        <Link href="/games" className={styles.detailBack}>
-          ← Back to games
-        </Link>
+    <article>
+      {/* ---------------- Hero ---------------- */}
+      <div className={styles.detailHero}>
+        <Image
+          src={`/images/games/${folder}/Pip.png`}
+          alt={`${title} splash art`}
+          fill
+          sizes="100vw"
+          priority
+          className={styles.detailHeroImg}
+        />
+        <div className={styles.detailHeroOverlay} />
 
-        <div className={styles.splash}>
-          <Image
-            src={`/images/games/${folder}/Game_Splash.png`}
-            alt={`${title} splash art`}
-            fill
-            sizes="100vw"
-            priority
-          />
-        </div>
+        <div className={`container ${styles.detailHeroContent}`}>
+          <Link href="/games" className={styles.detailBack}>
+            <ArrowLeft size={14} />
+            Back to games
+          </Link>
 
-        <div className={styles.detailHead}>
-          <div>
-            <span className={styles.status}>
-              <span className={styles.dot} />
-              {status}
-            </span>
-            <h1 className={styles.detailTitle}>{title}</h1>
+          <span className={styles.status}>
+            <span className={styles.dot} />
+            {status}
+          </span>
+
+          <h1 className={styles.detailTitle}>{title}</h1>
+
+          <div className={styles.tags}>
+            {tags.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
           </div>
 
-          <a
-            href={steamUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn"
-          >
-            View on Steam →
-          </a>
+          <div className={styles.detailHeroActions}>
+            <a
+              href={steamUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.cardBtn} ${styles.cardBtnPrimary}`}
+            >
+              <Gamepad2 size={14} />
+              Steam
+            </a>
+            <a
+              href={itchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.cardBtn} ${styles.cardBtnSecondary}`}
+            >
+              <ExternalLink size={14} />
+              Itch.io
+            </a>
+          </div>
         </div>
+      </div>
 
-        <div className={styles.tags}>
-          {tags.map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
+      <div className="container">
+        {/* ---------------- Alternating editorial sections ---------------- */}
+        <div className={styles.editorial}>
+          {descriptionParagraphs.map((paragraph, i) => (
+            <div
+              key={i}
+              className={`${styles.editorialRow} ${
+                i % 2 === 1 ? styles.editorialRowReverse : ""
+              }`}
+            >
+              <div className={styles.editorialText}>
+                <span className={styles.editorialIndex}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p>{paragraph}</p>
+              </div>
 
-        <p className={styles.detailDescription}>{description}</p>
-
-        <div className={styles.screenshots}>
-          {screenshots.map((n) => (
-            <div key={n} className={styles.screenshot}>
-              <Image
-                src={`/images/games/${folder}/Game_ScreenShot_${n}.png`}
-                alt={`${title} screenshot ${n}`}
-                fill
-                sizes="(max-width: 700px) 100vw, 33vw"
-              />
+              <div
+                className={`${styles.editorialImage} ${
+                  i === 1 ? styles.editorialImageTall : ""
+                }`}
+              >
+                <Image
+                  src={shot(editorialShotNumbers[i])}
+                  alt={`${title} screenshot ${editorialShotNumbers[i]}`}
+                  fill
+                  sizes="(max-width: 800px) 100vw, 50vw"
+                />
+              </div>
             </div>
           ))}
         </div>
+
+        {/* ---------------- Pull quote ---------------- */}
+        <div className={styles.pullQuote}>
+          {closingLines.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+
+        {/* ---------------- Controls ---------------- */}
+        <div className={styles.controlsSection}>
+          <span className={styles.eyebrow}>Controls</span>
+          <div className={styles.controlsGrid}>
+            {controls.map((c) => (
+              <div key={c.action} className={styles.controlRow}>
+                <kbd className={styles.controlKey}>{c.key}</kbd>
+                <span className={styles.controlAction}>{c.action}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ---------------- Warning ---------------- */}
+        <div className={styles.warningBox}>
+          <AlertTriangle size={20} className={styles.warningIcon} />
+          <p>{contentWarning}</p>
+        </div>
+
+        {/* ---------------- Gallery ---------------- */}
+        {galleryShots.length > 0 && (
+          <div className={styles.gallery}>
+            {galleryShots.map((n, i) => (
+              <div
+                key={n}
+                className={`${styles.galleryItem} ${
+                  i % 5 === 0 ? styles.galleryItemWide : ""
+                }`}
+              >
+                <Image
+                  src={shot(n)}
+                  alt={`${title} screenshot ${n}`}
+                  fill
+                  sizes="(max-width: 700px) 100vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </section>
+    </article>
   );
 }

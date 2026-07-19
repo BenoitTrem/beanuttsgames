@@ -65,3 +65,60 @@
     animation: none;
   }
 }
+
+.btnGame {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-sm);
+}
+
+.btnGameSecondary {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border: 1px solid var(--blood);
+}
+
+.btnGameSecondary:hover {
+  background: var(--blood-dim);
+}
+
+.btnGame:hover {
+  animation: monitorBeep 1.4s ease-out infinite;
+}
+
+@keyframes monitorBeep {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--ember-glow);
+  }
+  8% {
+    box-shadow: 0 0 0 4px var(--ember-glow);
+  }
+  16% {
+    box-shadow: 0 0 0 0 var(--ember-glow);
+  }
+  24% {
+    box-shadow: 0 0 0 5px var(--ember-glow);
+  }
+  34% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+.btnGame:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btnGame:hover {
+    animation: none;
+  }
+}

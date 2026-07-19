@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Info, Gamepad2, ExternalLink } from "lucide-react";
 import styles from "@/app/games/games.module.css";
 import type { Game } from "@/lib/games";
 
 export default function GameCard({ game }: { game: Game }) {
-  const { slug, title, tagline, tags, status, steamUrl, folder } = game;
+  const { slug, title, tagline, tags, status, steamUrl, itchUrl, folder } =
+    game;
 
   return (
     <div className={styles.card}>
@@ -35,16 +37,27 @@ export default function GameCard({ game }: { game: Game }) {
         </div>
 
         <div className={styles.cardActions}>
-          <Link href={`/games/${slug}`} className="btn btn-outline">
+          <Link href={`/games/${slug}`} className={styles.cardBtn}>
+            <Info size={14} />
             Learn more
           </Link>
           <a
             href={steamUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn"
+            className={styles.cardBtn}
           >
+            <Gamepad2 size={14} />
             Steam
+          </a>
+          <a
+            href={itchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cardBtn}
+          >
+            <ExternalLink size={14} />
+            Itch.io
           </a>
         </div>
       </div>

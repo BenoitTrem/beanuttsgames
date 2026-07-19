@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, Heart } from "lucide-react";
 import styles from "./home.module.css";
 import Typewriter from "./components/Typewriter";
 
@@ -19,7 +20,7 @@ export default function Home() {
       <div className="container">
         <div className={styles.logo}>
           <Image
-            src="/images/BeanuttsGames_Logo.png"
+            src="/images/BeanuttsGames_Logo_png.png"
             alt="Beanutts Games logo"
             fill
             sizes="220px"
@@ -36,10 +37,16 @@ export default function Home() {
         </p>
 
         <div className={styles.actions}>
-          <Link href="/games" className="btn">
+          <Link href="/games" className={`btn ${styles.btnGame}`}>
+            <ArrowRight size={16} />
             See my games
           </Link>
-          <Link href="/donate" className="btn btn-outline">
+
+          <Link
+            href="/donate"
+            className={`${styles.btnGame} ${styles.btnGameSecondary}`}
+          >
+            <Heart size={16} />
             Support me
           </Link>
         </div>

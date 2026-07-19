@@ -11,10 +11,13 @@ export default function NotFound() {
         somewhere it shouldn&apos;t have.
       </p>
       <div className={styles.actions}>
-        <Link href="/" className="btn">
+        <Link href="/" className={`btn ${styles.btnGame}`}>
           Back home
         </Link>
-        <Link href="/games" className="btn btn-outline">
+        <Link
+          href="/games"
+          className={`${styles.btnGame} ${styles.btnGameSecondary}`}
+        >
           See my games
         </Link>
       </div>
