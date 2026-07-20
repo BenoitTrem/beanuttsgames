@@ -38,8 +38,8 @@ export default function RootLayout({
         <Navbar />
         <PageTransition>
           <main>{children}</main>
-          <Footer />
         </PageTransition>
+        <Footer />
       </body>
     </html>
   );
