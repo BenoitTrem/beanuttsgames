@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SiteBackground from "./components/SiteBackground";
+import PageTransition from "./components/PageTransition";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -35,8 +36,10 @@ export default function RootLayout({
       <body>
         <SiteBackground />
         <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <PageTransition>
+          <main>{children}</main>
+          <Footer />
+        </PageTransition>
       </body>
     </html>
   );

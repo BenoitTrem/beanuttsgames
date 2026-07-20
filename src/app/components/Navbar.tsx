@@ -34,7 +34,9 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
+    <nav
+      className={`navbar ${scrolled ? "navbar-scrolled" : ""} ${open ? "navbar-open" : ""}`}
+    >
       <div className="navbar-inner">
         <Link href="/" className="navbar-brand" onClick={() => setOpen(false)}>
           Beanutts Games
