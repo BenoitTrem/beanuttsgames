@@ -17,7 +17,7 @@ export type Game = {
   steamUrl: string;
   itchUrl: string;
   folder: string;
-  screenshotCount: number;
+  frames: string[];
 };
 
 export const games: Game[] = [
@@ -64,7 +64,21 @@ export const games: Game[] = [
     steamUrl: "https://store.steampowered.com/app/4165280/The_Last_Wait/",
     itchUrl: "https://beanutts.itch.io/the-last-wait",
     folder: "the-last-wait",
-    screenshotCount: 12,
+    frames: [
+      "Game_Splash.png",
+      "Game_ScreenShot_1.png",
+      "Game_ScreenShot_2.png",
+      "Game_ScreenShot_12.png",
+      "Game_ScreenShot_3.png",
+      "Game_ScreenShot_4.png",
+      "Game_ScreenShot_5.png",
+      "Game_ScreenShot_6.png",
+      "Game_ScreenShot_7.png",
+      "Game_ScreenShot_8.png",
+      "Game_ScreenShot_9.png",
+      "Game_ScreenShot_10.png",
+      "Game_ScreenShot_11.png",
+    ],
   },
 ];
 

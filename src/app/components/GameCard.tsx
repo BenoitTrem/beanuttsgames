@@ -1,23 +1,25 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Info, Gamepad2, ExternalLink } from "lucide-react";
 import styles from "@/app/games/games.module.css";
 import type { Game } from "@/lib/games";
+import GameCoverCarousel from "./GameCoverCarousel";
 
 export default function GameCard({ game }: { game: Game }) {
-  const { slug, title, tagline, tags, status, steamUrl, itchUrl, folder } =
-    game;
+  const {
+    slug,
+    title,
+    tagline,
+    tags,
+    status,
+    steamUrl,
+    itchUrl,
+    folder,
+    frames,
+  } = game;
 
   return (
     <div className={styles.card}>
-      <div className={styles.cover}>
-        <Image
-          src={`/images/games/${folder}/Game_Splash.png`}
-          alt={`${title} splash art`}
-          fill
-          priority
-        />
-      </div>
+      <GameCoverCarousel folder={folder} title={title} frames={frames} />
 
       <div className={styles.body}>
         <span className={styles.status}>

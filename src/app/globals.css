@@ -411,6 +411,8 @@ button {
 }
 
 .footer-title {
+  align-items: left;
+  display: flex;
   font-size: 14px;
   font-weight: 800;
   color: var(--text-muted);
@@ -977,9 +979,15 @@ button {
 }
 
 @media (max-width: 768px) {
+  .footer-title {
+    align-items: center;
+    margin: 0 auto;
+  }
+
   .footer-list {
     align-items: center;
     margin: 0 auto;
+    gap: 0.5rem;
   }
   .footer-social {
     align-items: center;

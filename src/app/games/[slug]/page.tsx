@@ -46,18 +46,14 @@ export default async function GameDetail({ params }: Props) {
     steamUrl,
     itchUrl,
     folder,
-    screenshotCount,
+    frames,
   } = game;
 
-  const shot = (n: number) =>
-    `/images/games/${folder}/Game_ScreenShot_${n}.png`;
+  const screenshots = frames.slice(1);
 
-  const editorialShotNumbers = [1, 12, 10];
+  const editorialShots = [screenshots[0], screenshots[2], screenshots[11]];
 
-  const galleryShots = Array.from(
-    { length: screenshotCount },
-    (_, i) => i + 1,
-  ).filter((n) => !editorialShotNumbers.includes(n));
+  const galleryShots = screenshots.filter((f) => !editorialShots.includes(f));
 
   return (
     <article>
@@ -140,8 +136,8 @@ export default async function GameDetail({ params }: Props) {
                 }`}
               >
                 <Image
-                  src={shot(editorialShotNumbers[i])}
-                  alt={`${title} screenshot ${editorialShotNumbers[i]}`}
+                  src={`/images/games/${folder}/${editorialShots[i]}`}
+                  alt={`${title} screenshot ${i + 1}`}
                   fill
                   sizes="(max-width: 800px) 100vw, 50vw"
                 />
@@ -179,16 +175,14 @@ export default async function GameDetail({ params }: Props) {
         {/* ---------------- Gallery ---------------- */}
         {galleryShots.length > 0 && (
           <div className={styles.gallery}>
-            {galleryShots.map((n, i) => (
+            {galleryShots.map((filename, i) => (
               <div
-                key={n}
-                className={`${styles.galleryItem} ${
-                  i % 5 === 0 ? styles.galleryItemWide : ""
-                }`}
+                key={filename}
+                className={`${styles.galleryItem} ${i % 5 === 0 ? styles.galleryItemWide : ""}`}
               >
                 <Image
-                  src={shot(n)}
-                  alt={`${title} screenshot ${n}`}
+                  src={`/images/games/${folder}/${filename}`}
+                  alt={`${title} screenshot`}
                   fill
                   sizes="(max-width: 700px) 100vw, 33vw"
                 />

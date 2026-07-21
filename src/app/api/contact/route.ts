@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   });
 
   await transporter.sendMail({
-    from: `"Beanutts Games" <${process.env.GMAIL_USER}>`,
+    from: `"${email} via Beanutts Games" <${process.env.GMAIL_USER}>`,
     to: process.env.GMAIL_USER,
     replyTo: email,
     subject: subject,

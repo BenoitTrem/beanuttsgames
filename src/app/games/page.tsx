@@ -9,9 +9,7 @@ export default function Games() {
         <div className={styles.header}>
           <span className={styles.eyebrow}>Beanutts Games</span>
           <h1 className={styles.headerTitle}>Games</h1>
-          <p className={styles.headerSubtitle}>
-            Everything I&apos;m building, one nightmare at a time.
-          </p>
+          <p className={styles.headerSubtitle}>Everything I&apos;m building.</p>
         </div>
 
         <div className={styles.grid}>

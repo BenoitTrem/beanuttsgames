@@ -1,7 +1,7 @@
 .wrap {
-  max-width: 640px;
+  padding: 5rem 0 3rem;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 6rem 0 6rem;
 }
 
 .eyebrow {
@@ -21,13 +21,25 @@
   margin-bottom: 1.75rem;
 }
 
+.textsection {
+  padding-top: 2rem;
+}
+
 .text {
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.75;
   margin-bottom: 1.1rem;
+  text-align: left;
 }
 
 .text strong {
   color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    padding: 2.5rem 0 3rem;
+    text-align: center;
+  }
 }

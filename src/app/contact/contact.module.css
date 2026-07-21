@@ -101,6 +101,16 @@
   flex-direction: column;
   gap: 1.4rem;
   background: var(--surface, transparent);
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.formCard:hover {
+  border-color: var(--blood-dim);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px -14px var(--ember-glow);
 }
 
 .fieldGroup {
