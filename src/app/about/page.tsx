@@ -1,4 +1,27 @@
+import type { Metadata } from "next";
 import styles from "./about.module.css";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Beanutts Games is a solo indie studio making atmospheric psychological horror games, currently developing The Last Wait.",
+  openGraph: {
+    title: "About — Beanutts Games",
+    description:
+      "Beanutts Games is a solo indie studio making atmospheric psychological horror games, currently developing The Last Wait.",
+    url: "/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — Beanutts Games",
+    description:
+      "Beanutts Games is a solo indie studio making atmospheric psychological horror games, currently developing The Last Wait.",
+  },
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 export default function About() {
   return (

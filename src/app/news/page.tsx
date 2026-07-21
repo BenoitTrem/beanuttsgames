@@ -1,4 +1,27 @@
+import type { Metadata } from "next";
 import styles from "./news.module.css";
+
+export const metadata: Metadata = {
+  title: "News",
+  description:
+    "Updates, devlogs, and progress on The Last Wait and other projects from Beanutts Games.",
+  openGraph: {
+    title: "News — Beanutts Games",
+    description:
+      "Updates, devlogs, and progress on The Last Wait and other projects from Beanutts Games.",
+    url: "/news",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "News — Beanutts Games",
+    description:
+      "Updates, devlogs, and progress on The Last Wait and other projects from Beanutts Games.",
+  },
+  alternates: {
+    canonical: "/news",
+  },
+};
 
 type PostLink = {
   label: string;

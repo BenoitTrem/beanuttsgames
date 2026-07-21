@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Gamepad2, ExternalLink, AlertTriangle, ArrowLeft } from "lucide-react";
 import styles from "@/app/games/games.module.css";
 import { games, getGame } from "@/lib/games";
+import FeedMosaic from "./ImageGroup";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -19,15 +20,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const game = getGame(slug);
   if (!game) return {};
 
+  const title = `${game.title} — Beanutts Games`;
+  const ogImage = `/images/games/${game.folder}/Game_Splash.png`;
+
   return {
-    title: `${game.title} — Beanutts Games`,
-    description: game.description,
+    title: game.title,
+    description: game.tagline,
     openGraph: {
-      title: game.title,
-      description: game.description,
-      images: [`/images/games/${game.folder}/Game_Splash.png`],
+      title,
+      description: game.tagline,
+      url: `/games/${game.slug}`,
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${game.title} splash art`,
+        },
+      ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: game.tagline,
+      images: [ogImage],
+    },
+    alternates: { canonical: `/games/${game.slug}` },
   };
+}
+
+function chunk<T>(arr: T[], parts: number): T[][] {
+  if (parts <= 0) return [arr];
+  const size = Math.ceil(arr.length / parts);
+  return Array.from({ length: parts }, (_, i) =>
+    arr.slice(i * size, i * size + size),
+  );
 }
 
 export default async function GameDetail({ params }: Props) {
@@ -41,19 +69,30 @@ export default async function GameDetail({ params }: Props) {
     closingLines,
     controls,
     contentWarning,
-    tags,
-    status,
     steamUrl,
     itchUrl,
     folder,
-    frames,
   } = game;
 
-  const screenshots = frames.slice(1);
+  const mosaicSets: { hero: string; small: [string, string] }[] = [
+    {
+      hero: "Game_ScreenShot_10.png",
+      small: ["Game_ScreenShot_12.png", "Game_ScreenShot_11.png"],
+    },
+    {
+      hero: "Game_ScreenShot_2.png",
+      small: ["Game_ScreenShot_1.png", "Game_ScreenShot_4.png"],
+    },
+    {
+      hero: "Game_ScreenShot_8.png",
+      small: ["Game_ScreenShot_5.png", "Game_ScreenShot_3.png"],
+    },
+  ];
 
-  const editorialShots = [screenshots[0], screenshots[2], screenshots[11]];
-
-  const galleryShots = screenshots.filter((f) => !editorialShots.includes(f));
+  const finalSet: { hero: string; small: [string, string] } = {
+    hero: "Game_ScreenShot_9.png",
+    small: ["Game_ScreenShot_6.png", "Game_ScreenShot_7.png"],
+  };
 
   return (
     <article>
@@ -75,20 +114,7 @@ export default async function GameDetail({ params }: Props) {
             Back to games
           </Link>
 
-          <span className={styles.status}>
-            <span className={styles.dot} />
-            {status}
-          </span>
-
           <h1 className={styles.detailTitle}>{title}</h1>
-
-          <div className={styles.tags}>
-            {tags.map((tag) => (
-              <span key={tag} className={styles.tag}>
-                {tag}
-              </span>
-            ))}
-          </div>
 
           <div className={styles.detailHeroActions}>
             <a
@@ -114,34 +140,26 @@ export default async function GameDetail({ params }: Props) {
       </div>
 
       <div className="container">
-        {/* ---------------- Alternating editorial sections ---------------- */}
-        <div className={styles.editorial}>
+        <div className={styles.caseLog}>
           {descriptionParagraphs.map((paragraph, i) => (
             <div
               key={i}
-              className={`${styles.editorialRow} ${
-                i % 2 === 1 ? styles.editorialRowReverse : ""
-              }`}
+              className={`${styles.logRow} ${i % 2 === 1 ? styles.logRowReverse : ""}`}
             >
-              <div className={styles.editorialText}>
-                <span className={styles.editorialIndex}>
+              <div className={styles.logText}>
+                <span className={styles.logIndex}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <p>{paragraph}</p>
               </div>
 
-              <div
-                className={`${styles.editorialImage} ${
-                  i === 1 ? styles.editorialImageTall : ""
-                }`}
-              >
-                <Image
-                  src={`/images/games/${folder}/${editorialShots[i]}`}
-                  alt={`${title} screenshot ${i + 1}`}
-                  fill
-                  sizes="(max-width: 800px) 100vw, 50vw"
-                />
-              </div>
+              <FeedMosaic
+                folder={folder}
+                title={title}
+                hero={mosaicSets[i].hero}
+                small={mosaicSets[i].small}
+                reversed={i % 2 === 1}
+              />
             </div>
           ))}
         </div>
@@ -151,6 +169,42 @@ export default async function GameDetail({ params }: Props) {
           {closingLines.map((line) => (
             <p key={line}>{line}</p>
           ))}
+        </div>
+
+        {/* ---------------- Final image set ---------------- */}
+        <div className={styles.finalGallery}>
+          {[finalSet.hero, ...finalSet.small].map((filename) => (
+            <div key={filename} className={styles.finalTile}>
+              <Image
+                src={`/images/games/${folder}/${filename}`}
+                alt={`${title} screenshot`}
+                fill
+                sizes="(max-width: 760px) 100vw, 32vw"
+                className={styles.finalImg}
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* ---------------- Languages ---------------- */}
+        <div className={styles.languagesSection}>
+          <span className={styles.eyebrow}>Available languages</span>
+          <div className={styles.tags_2}>
+            {[
+              "English",
+              "French",
+              "Spanish",
+              "Dutch",
+              "Russian",
+              "Japanese",
+              "Chinese (Simplified)",
+              "Portuguese (Brazil)",
+            ].map((lang) => (
+              <span key={lang} className={styles.tag_2}>
+                {lang}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* ---------------- Controls ---------------- */}
@@ -171,25 +225,6 @@ export default async function GameDetail({ params }: Props) {
           <AlertTriangle size={20} className={styles.warningIcon} />
           <p>{contentWarning}</p>
         </div>
-
-        {/* ---------------- Gallery ---------------- */}
-        {galleryShots.length > 0 && (
-          <div className={styles.gallery}>
-            {galleryShots.map((filename, i) => (
-              <div
-                key={filename}
-                className={`${styles.galleryItem} ${i % 5 === 0 ? styles.galleryItemWide : ""}`}
-              >
-                <Image
-                  src={`/images/games/${folder}/${filename}`}
-                  alt={`${title} screenshot`}
-                  fill
-                  sizes="(max-width: 700px) 100vw, 33vw"
-                />
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </article>
   );

@@ -7,6 +7,7 @@ import {
   FaFacebook,
   FaDiscord,
   FaYoutube,
+  FaTiktok,
 } from "react-icons/fa6";
 import { useState, useRef } from "react";
 
@@ -29,9 +30,9 @@ const socialLinks = [
     icon: FaInstagram,
   },
   {
-    href: "https://www.facebook.com/profile.php?id=61583124765984",
-    label: "Facebook",
-    icon: FaFacebook,
+    href: "https://www.tiktok.com/@beanuttsgames",
+    label: "TikTok",
+    icon: FaTiktok,
   },
 ];
 

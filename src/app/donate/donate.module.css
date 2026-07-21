@@ -18,15 +18,22 @@
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   font-weight: 800;
   letter-spacing: -0.02em;
-  padding-bottom: 25rem;
+  padding-bottom: 5rem;
 }
 
 .subtitle {
   margin: 1rem auto 2rem;
-  max-width: 460px;
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.6;
+  padding-bottom: 15rem;
+}
+
+.textsection {
+  max-width: 800px;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
 }
 
 @media (max-width: 760px) {

@@ -63,6 +63,7 @@ export default function GameCoverCarousel({
             src={`/images/games/${folder}/${filename}`}
             alt={i === 0 ? `${title} splash art` : `${title} screenshot ${i}`}
             fill
+            sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
             priority={i === 0}
           />
         </div>
