@@ -42,6 +42,8 @@ body {
 html,
 body {
   overflow-x: clip;
+  overscroll-behavior-x: none;
+  overscroll-behavior: none;
 }
 
 ::-webkit-scrollbar {
@@ -57,9 +59,10 @@ body {
   border-radius: 999px;
   border: 2px solid var(--bg);
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--blood);
+@media (hover: hover) {
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--blood);
+  }
 }
 
 ::-webkit-scrollbar-thumb:active {
@@ -100,13 +103,14 @@ button {
     background 0.15s ease,
     transform 0.1s ease;
 }
-
-.btn:hover {
-  background: var(--accent-hover);
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--accent-hover);
+  }
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: scale(0.9);
 }
 
 .btn-outline {
@@ -115,8 +119,10 @@ button {
   border: 1px solid var(--border);
 }
 
-.btn-outline:hover {
-  background: var(--bg-elevated);
+@media (hover: hover) {
+  .btn-outline:hover {
+    background: var(--bg-elevated);
+  }
 }
 
 .card {
@@ -154,6 +160,14 @@ button {
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 24px -16px var(--ember-glow);
 }
+@media (hover: hover) {
+  .navbar:hover {
+    background: rgba(14, 14, 18, 0.75);
+  }
+  .navbar-scrolled:hover {
+    background: rgba(14, 14, 18, 0.75);
+  }
+}
 
 .navbar-open {
   background: rgba(14, 14, 18, 1);
@@ -176,6 +190,16 @@ button {
   font-size: 1.05rem;
   letter-spacing: -0.01em;
   color: var(--text);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .navbar-brand:hover {
+    transform: scaleX(1.02);
+  }
 }
 
 .navbar-brand-dot {
@@ -259,9 +283,10 @@ button {
   padding: 0.4rem;
   border-radius: var(--radius-sm);
 }
-
-.navbar-toggle:hover {
-  background: var(--bg-elevated);
+@media (hover: hover) {
+  .navbar-toggle:hover {
+    background: var(--bg-elevated);
+  }
 }
 
 @media (max-width: 640px) {
@@ -325,10 +350,16 @@ button {
   border-top: 1px solid var(--border);
   position: relative;
   z-index: 1;
-  background: var(--bg);
+  background: rgba(14, 14, 18, 0.75);
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .footer:hover {
+    background: var(--bg);
+  }
 }
 
 .footer-container {
@@ -359,10 +390,11 @@ button {
     border-color 0.15s ease,
     box-shadow 0.15s ease;
 }
-
-.footer-social-icon:hover {
-  color: var(--text);
-  border-color: var(--blood-dim);
+@media (hover: hover) {
+  .footer-social-icon:hover {
+    color: var(--text);
+    border-color: var(--blood-dim);
+  }
 }
 
 @media (max-width: 480px) {
@@ -941,5 +973,26 @@ button {
   .fadeIn::before {
     animation: none;
     display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-list {
+    align-items: center;
+    margin: 0 auto;
+  }
+  .footer-social {
+    align-items: center;
+    padding-top: 1rem;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .footer {
+    background: rgba(14, 14, 18, 0.85);
   }
 }

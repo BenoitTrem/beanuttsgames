@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaFacebook,
   FaDiscord,
+  FaYoutube,
 } from "react-icons/fa6";
 import { useState, useRef } from "react";
 
@@ -15,6 +16,12 @@ type FormErrors = Partial<Record<keyof FormFields, string>>;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const socialLinks = [
+  { href: "https://discord.gg/67tRE3TjMr", label: "Discord", icon: FaDiscord },
+  {
+    href: "https://www.youtube.com/@BeanuttsGames",
+    label: "YouTube",
+    icon: FaYoutube,
+  },
   { href: "https://x.com/Beanuttsss", label: "X (Twitter)", icon: FaXTwitter },
   {
     href: "https://www.instagram.com/beanutts_games/",
@@ -26,7 +33,6 @@ const socialLinks = [
     label: "Facebook",
     icon: FaFacebook,
   },
-  { href: "https://discord.gg/", label: "Discord", icon: FaDiscord },
 ];
 
 const copy = {
