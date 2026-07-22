@@ -57,7 +57,14 @@
     box-shadow 0.15s ease;
 }
 
-.emailLink:hover {
+@media (hover: hover) {
+  .emailLink:hover {
+    border-color: var(--blood-dim);
+    box-shadow: 0 0 0 3px var(--ember-glow);
+  }
+}
+
+.emailLink:active {
   border-color: var(--blood-dim);
   box-shadow: 0 0 0 3px var(--ember-glow);
 }
@@ -83,7 +90,14 @@
     box-shadow 0.15s ease;
 }
 
-.socialIcon:hover {
+@media (hover: hover) {
+  .socialIcon:hover {
+    color: var(--text);
+    border-color: var(--blood-dim);
+    box-shadow: 0 0 0 3px var(--ember-glow);
+  }
+}
+.socialIcon:active {
   color: var(--text);
   border-color: var(--blood-dim);
   box-shadow: 0 0 0 3px var(--ember-glow);
@@ -107,10 +121,12 @@
     box-shadow 0.2s ease;
 }
 
-.formCard:hover {
-  border-color: var(--blood-dim);
-  transform: translateY(-1px);
-  box-shadow: 0 14px 30px -14px var(--ember-glow);
+@media (hover: hover) {
+  .formCard:hover {
+    border-color: var(--blood-dim);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px -14px var(--ember-glow);
+  }
 }
 
 .fieldGroup {
@@ -154,10 +170,12 @@
   opacity: 0.7;
 }
 
-.input:hover,
-.textarea:hover {
-  border-color: #9ca3af;
-  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.25);
+@media (hover: hover) {
+  .input:hover,
+  .textarea:hover {
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.25);
+  }
 }
 
 .input:focus,
@@ -171,7 +189,13 @@
   border-color: var(--blood);
 }
 
-.inputError:hover,
+@media (hover: hover) {
+  .inputError:hover {
+    border-color: var(--blood-dim);
+    box-shadow: 0 0 0 3px var(--ember-glow);
+  }
+}
+
 .inputError:focus {
   border-color: var(--blood-dim);
   box-shadow: 0 0 0 3px var(--ember-glow);
@@ -182,7 +206,13 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
-.inputValid:hover,
+@media (hover: hover) {
+  .inputValid:hover {
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.25);
+  }
+}
+
 .inputValid:focus {
   border-color: #9ca3af;
   box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.25);
@@ -213,8 +243,10 @@
   border-radius: var(--radius-sm);
 }
 
-.submitBtn:hover:not(:disabled) {
-  box-shadow: 0 0 0 3px var(--ember-glow);
+@media (hover: hover) {
+  .submitBtn:hover:not(:disabled) {
+    box-shadow: 0 0 0 3px var(--ember-glow);
+  }
 }
 
 .submitBtn:disabled {
@@ -222,8 +254,10 @@
   cursor: not-allowed;
 }
 
-.submitBtn:hover {
-  animation: monitorBeep 1.4s ease-out infinite;
+@media (hover: hover) {
+  .submitBtn:hover {
+    animation: monitorBeep 1.4s ease-out infinite;
+  }
 }
 
 @keyframes monitorBeep {
@@ -245,8 +279,10 @@
   }
 }
 
-.submitBtn:hover:not(:disabled) {
-  box-shadow: 0 0 0 3px var(--ember-glow);
+@media (hover: hover) {
+  .submitBtn:hover:not(:disabled) {
+    box-shadow: 0 0 0 3px var(--ember-glow);
+  }
 }
 
 .submitBtn:disabled {
@@ -268,9 +304,11 @@
     box-shadow 0.15s ease;
 }
 
-.resetBtn:hover {
-  border-color: var(--blood-dim);
-  box-shadow: 0 0 0 3px var(--ember-glow);
+@media (hover: hover) {
+  .resetBtn:hover {
+    border-color: var(--blood-dim);
+    box-shadow: 0 0 0 3px var(--ember-glow);
+  }
 }
 
 .sentRow {
