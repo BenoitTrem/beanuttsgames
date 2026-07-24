@@ -43,7 +43,7 @@ const posts: Post[] = [
     links: [
       {
         label: "Watch the trailer",
-        url: "https://www.youtube.com/@BeanuttsGames",
+        url: "https://youtu.be/1PcfjAnfBkw",
       },
     ],
   },

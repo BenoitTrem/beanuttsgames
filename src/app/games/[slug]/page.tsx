@@ -74,6 +74,9 @@ export default async function GameDetail({ params }: Props) {
     folder,
   } = game;
 
+  const trailerUrl = "https://youtu.be/1PcfjAnfBkw";
+  const trailerId = trailerUrl.split("/").pop();
+
   const mosaicSets: { hero: string; small: [string, string] }[] = [
     {
       hero: "Game_ScreenShot_10.png",
@@ -140,6 +143,19 @@ export default async function GameDetail({ params }: Props) {
       </div>
 
       <div className="container">
+        <div className={styles.trailerSection}>
+          <span className={styles.eyebrow}>Trailer</span>
+          <div className={styles.trailerWrapper}>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${trailerId}?rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`}
+              title={`${title} — Gameplay Reveal Trailer`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              className={styles.trailerIframe}
+            />
+          </div>
+        </div>
+
         <div className={styles.caseLog}>
           {descriptionParagraphs.map((paragraph, i) => (
             <div
