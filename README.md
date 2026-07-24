@@ -1,8 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Beanutts Games
+
+Beanutts Games is a solo indie studio making atmospheric, story-driven horror games. This repository contains the source for the official Beanutts Games website — built with [Next.js](https://nextjs.org) — showcasing current and upcoming projects, development news, and studio info.
+
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- TypeScript
+- CSS Modules
 
 ## Getting Started
 
-First, run the development server:
+### Requirements
+
+- [Node.js](https://nodejs.org) 18.18 or later
+- One of: npm, yarn, pnpm, or bun
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/your-username/beanutts-games.git
+cd beanutts-games
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+### Running locally
+
+Start the development server:
 
 ```bash
 npm run dev
@@ -14,23 +46,26 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the site. The page auto-updates as you edit the source files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Building for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+This compiles an optimized production build and serves it locally so you can verify everything before deploying.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
+The project is deployed on [Vercel](https://vercel.com). Every push to the main branch triggers an automatic deployment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🌐 **Live site**: [beanuttsgames.vercel.app](https://beanuttsgames.vercel.app/)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© Beanutts Games. All rights reserved.
