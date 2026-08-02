@@ -65,7 +65,7 @@ export const games: Game[] = [
     itchUrl: "https://beanutts.itch.io/the-last-wait",
     folder: "the-last-wait",
     frames: [
-      "Game_Splash.png",
+      "test.png",
       "Game_ScreenShot_1.png",
       "Game_ScreenShot_2.png",
       "Game_ScreenShot_12.png",

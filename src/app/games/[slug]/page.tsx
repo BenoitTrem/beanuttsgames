@@ -6,6 +6,7 @@ import { Gamepad2, ExternalLink, AlertTriangle, ArrowLeft } from "lucide-react";
 import styles from "@/app/games/games.module.css";
 import { games, getGame } from "@/lib/games";
 import FeedMosaic from "./ImageGroup";
+import GlitchHero from "../../components/GlitchHero";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -74,8 +75,17 @@ export default async function GameDetail({ params }: Props) {
     folder,
   } = game;
 
-  const trailerUrl = "https://youtu.be/1PcfjAnfBkw";
-  const trailerId = trailerUrl.split("/").pop();
+  const trailers = [
+    {
+      label: "Gameplay Trailer",
+      url: "https://youtu.be/KIJHqGYbbMY?si=irrTFMRoPeinOl0k",
+    },
+    {
+      label: "Cinematic Trailer",
+      url: "https://youtu.be/gTu4mJ9zBY4?si=6wlShs-VnhFINwhH",
+    },
+  ];
+  const getYouTubeId = (url: string) => url.split("/").pop()?.split("?")[0];
 
   const mosaicSets: { hero: string; small: [string, string] }[] = [
     {
@@ -101,12 +111,9 @@ export default async function GameDetail({ params }: Props) {
     <article>
       {/* ---------------- Hero ---------------- */}
       <div className={styles.detailHero}>
-        <Image
-          src={`/images/games/${folder}/Pip.png`}
-          alt={`${title} splash art`}
-          fill
-          sizes="100vw"
-          priority
+        <GlitchHero
+          folder={folder}
+          title={title}
           className={styles.detailHeroImg}
         />
         <div className={styles.detailHeroOverlay} />
@@ -144,15 +151,22 @@ export default async function GameDetail({ params }: Props) {
 
       <div className="container">
         <div className={styles.trailerSection}>
-          <span className={styles.eyebrow}>Trailer</span>
-          <div className={styles.trailerWrapper}>
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${trailerId}?rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`}
-              title={`${title} — Gameplay Reveal Trailer`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              className={styles.trailerIframe}
-            />
+          <span className={styles.eyebrow}>Trailers</span>
+          <div className={styles.trailerGrid}>
+            {trailers.map((trailer) => (
+              <div key={trailer.url} className={styles.trailerItem}>
+                <span className={styles.trailerItemLabel}>{trailer.label}</span>
+                <div className={styles.trailerWrapper}>
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${getYouTubeId(trailer.url)}?rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`}
+                    title={`${title} — ${trailer.label}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className={styles.trailerIframe}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

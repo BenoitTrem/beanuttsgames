@@ -15,6 +15,7 @@
   text-transform: uppercase;
   color: var(--blood);
   margin-bottom: 0.75rem;
+  padding-top: 4rem;
 }
 
 .headerTitle {
@@ -1328,6 +1329,40 @@
   height: 100%;
   border: 0;
   pointer-events: auto;
+}
+.trailerGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.trailerItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.trailerGrid .trailerWrapper {
+  margin-top: 0;
+}
+
+.trailerItemLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (max-width: 760px) {
+  .trailerGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .eyebrow {
+    padding-top: 2rem;
+  }
 }
 
 @media (hover: hover) {
