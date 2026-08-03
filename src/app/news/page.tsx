@@ -38,12 +38,23 @@ type Post = {
 const posts: Post[] = [
   {
     date: "July 2026",
-    title: "Official trailer is here",
-    body: "The first official trailer for The Last Wait is live. Watch it to get a first look at the atmosphere I've been building.",
+    title: "Official cinematic trailer is out now",
+    body: "The first official cinematic trailer for The Last Wait has arrived. Get a glimpse into the unsettling world, haunting atmosphere, and mystery waiting behind every night.",
     links: [
       {
-        label: "Watch the trailer",
-        url: "https://youtu.be/1PcfjAnfBkw",
+        label: "Watch the cinematic trailer",
+        url: "https://youtu.be/gTu4mJ9zBY4?si=9aGUUw1_xo5SyXKT",
+      },
+    ],
+  },
+  {
+    date: "July 2026",
+    title: "The gameplay  trailer is here",
+    body: "The gameplay reveal trailer for The Last Wait is live. Watch it to get a first look at the atmosphere I've been building.",
+    links: [
+      {
+        label: "Watch the gameplay trailer",
+        url: "https://youtu.be/KIJHqGYbbMY?si=hWPEe6tgx06vNfaN",
       },
     ],
   },
